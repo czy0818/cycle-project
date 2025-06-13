@@ -39,6 +39,7 @@
                 type="text"
                 v-model="username"
                 class="login-input"
+                @blur="validateUsername"
                 placeholder=" "
             />
             <label class="input-label">手机号/账号</label>
@@ -121,6 +122,7 @@
 
 <script setup>
 import {ref} from "vue";
+import {ElMessage} from "element-plus";
 
 const isShow = ref(true)
 const isShowLine = ref(true)
@@ -139,6 +141,12 @@ function passwordLogin() {
 function captchaLogin() {
   isShowLine.value = false
   console.log("captchaLogin")
+}
+
+function validateUsername() {
+  if (username.value === "" || username.value.length < 0) {
+    ElMessage.error("手机号或账号不能为空")
+  }
 }
 
 /*
