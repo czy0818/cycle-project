@@ -45,10 +45,10 @@
           </div>
         </div>
         <div class="login-box" v-else>
-          <div class="input-wrapper" :class="{ 'has-value': username }">
+          <div class="input-wrapper" :class="{ 'has-value': phone }">
             <input
                 type="text"
-                v-model="username"
+                v-model="phone"
                 class="login-input"
                 placeholder=" "
             />
@@ -102,7 +102,7 @@
 
     <el-row class="login-button-container">
       <el-col :span="24" class="col">
-        <div class="login-button">
+        <div class="login-button" @click="submitLoginForm">
             <span class="text">登录</span>
         </div>
       </el-col>
@@ -125,6 +125,7 @@ import {ref} from "vue";
 const isShow = ref(true)
 const isShowLine = ref(true)
 const username = ref("")
+const phone = ref("")
 const password = ref("")
 const captcha = ref("")
 const countdown = ref(0)
@@ -140,7 +141,10 @@ function captchaLogin() {
   console.log("captchaLogin")
 }
 
-const getCode = () => {
+/*
+获取验证码
+ */
+function getCode() {
   // 如果倒计时未结束，直接返回
   if (countdown.value > 0) return;
   countdown.value = 60;
@@ -152,7 +156,14 @@ const getCode = () => {
       isCounting.value = false;
     }
   }, 1000);
-};
+}
+
+/*
+提交登录表单
+ */
+function submitLoginForm(){
+
+}
 
 
 </script>
